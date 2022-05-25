@@ -1,0 +1,26 @@
+.hero {
+  position: relative;
+  height: 932px;
+  overflow: hidden;
+  background-color: #242424;
+}
+
+.hero div {
+  position: unset !important;
+}
+
+.heroFeaturedImage {
+  object-fit: cover;
+  object-position: 50% 0;
+  animation: hero-animation ease-in-out 2s;
+}
+
+@keyframes hero-animation {
+  0% {
+    transform: scale(1.3);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
