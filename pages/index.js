@@ -1,12 +1,11 @@
 import Hero from '../components/Hero/Hero';
-import MainLayout from '../components/MainLayout';
+import MainLayout from '../components/MainLayout/MainLayout';
 
 const Home = props => {
-  const dataFeaturedFilm = props.featuredFilm;
-  const featuredFilm = dataFeaturedFilm.slice(-1);
+  const { featuredApiFilm, popularApiFilms } = props;
 
-  const dataPopularFilms = props.popularFilms;
-  const popularFilms = dataPopularFilms.slice(0, 4);
+  const featuredFilm = featuredApiFilm.slice(-1);
+  const popularFilms = popularApiFilms.slice(0, 4);
 
   return (
     <MainLayout
@@ -16,30 +15,25 @@ const Home = props => {
       <Hero
         featuredFilm={featuredFilm[0].title}
         urlImage={featuredFilm[0].backdrop_path}
+        popularFilms={popularFilms}
       />
-      {popularFilms.map(item => {
-        console.log('--- Data Popular Films ---');
-        console.log(item);
-      })}
     </MainLayout>
   );
 };
 
 export async function getServerSideProps() {
   const urlFeaturedFilm = `${process.env.NEXT_PUBLIC_FEATURED_API_URL}api_key=${process.env.NEXT_PUBLIC_API_KEY}`;
-
-  const urlPopularFilms = `${process.env.NEXT_PUBLIC_POPULAR_API_URL}api_key=${process.env.NEXT_PUBLIC_API_KEY}`;
-
   const resFeaturedFilm = await fetch(urlFeaturedFilm);
   const dataFeaturedFilm = await resFeaturedFilm.json();
 
+  const urlPopularFilms = `${process.env.NEXT_PUBLIC_POPULAR_API_URL}api_key=${process.env.NEXT_PUBLIC_API_KEY}`;
   const resPopularFilms = await fetch(urlPopularFilms);
   const dataPopularFilms = await resPopularFilms.json();
 
   return {
     props: {
-      featuredFilm: dataFeaturedFilm.results,
-      popularFilms: dataPopularFilms.results,
+      featuredApiFilm: dataFeaturedFilm.results,
+      popularApiFilms: dataPopularFilms.results,
     },
   };
 }

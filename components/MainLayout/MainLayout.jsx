@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import Head from 'next/head';
-import Navbar from './Navbar/Navbar';
+import Navbar from '../Navbar/Navbar';
 
 const MainLayout = props => {
   const isServer = typeof window === 'undefined';
