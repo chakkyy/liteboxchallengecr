@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { Container, Row, Col, Button } from 'react-bootstrap';
-import playIcon from '../../public/assets/icons/play.svg';
-import plusIcon from '../../public/assets/icons/plus.svg';
+import Sidebar from '../Sidebar/Sidebar';
 
 const Hero = props => {
   return (
@@ -17,7 +16,7 @@ const Hero = props => {
 
       <Container className="hero-container">
         <Row>
-          <Col md={8} lg={9}>
+          <Col md={8} lg={9} className="align-self-end">
             <section className="hero-content">
               <h6 className="wow fadeInDown">
                 ORIGINAL DE <strong>LITEFLIX</strong>
@@ -61,7 +60,9 @@ const Hero = props => {
           </Col>
 
           <Col md={4} lg={3}>
-            <section className="list-films"></section>
+            <section className="list-films">
+              <Sidebar popularFilms={props.popularFilms} />
+            </section>
           </Col>
         </Row>
       </Container>
