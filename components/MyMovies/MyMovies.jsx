@@ -14,7 +14,7 @@ const MyMovies = () => {
       setDataLocalStorage(dataMovieLocalStorage);
     }
     setShowData(true);
-  }, [showData]);
+  }, [showData, dataLocalStorage]);
 
   const dataDone = () => {
     if (showData) {
