@@ -121,7 +121,7 @@ const NavbarTop = () => {
         show={showModal}
         onHide={handleCloseModal}
       >
-        <AddMyMovie />
+        <AddMyMovie onHide={handleCloseModal} />
       </Modal>
     </>
   );
