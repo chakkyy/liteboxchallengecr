@@ -27,7 +27,7 @@ const NavbarTop = () => {
             </svg>
           </span>
 
-          <Navbar.Brand className="wow slideInUp">
+          <Navbar.Brand className="wow slideInUp" aria-label="Liteflix logo">
             <svg
               width="111"
               height="24"
@@ -45,7 +45,11 @@ const NavbarTop = () => {
           <Nav className="me-auto">
             <ul>
               <li>
-                <Nav.Link className="wow zoomIn" onClick={handleShowModal}>
+                <Nav.Link
+                  aria-label="Agregar pelicula"
+                  className="wow zoomIn"
+                  onClick={handleShowModal}
+                >
                   <svg
                     width="15"
                     height="14"
@@ -63,7 +67,7 @@ const NavbarTop = () => {
           </Nav>
 
           <Nav className="ml-auto">
-            <Nav.Link className="wow zoomIn">
+            <Nav.Link className="wow zoomIn" href="#" aria-label="hamburger menu">
               <svg
                 width="27"
                 height="14"
@@ -77,7 +81,7 @@ const NavbarTop = () => {
               </svg>
             </Nav.Link>
 
-            <Nav.Link className="wow zoomIn">
+            <Nav.Link href="#" aria-label="notifications bell" className="wow zoomIn">
               <svg
                 width="26"
                 height="26"
@@ -101,7 +105,7 @@ const NavbarTop = () => {
               </svg>
             </Nav.Link>
 
-            <Nav.Link className="wow zoomIn">
+            <Nav.Link className="wow zoomIn" href="#" aria-label="user profile settings">
               <Image
                 src="/assets/icons/userIcon.png"
                 alt="icon-perfil"
