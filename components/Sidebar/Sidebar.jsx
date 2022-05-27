@@ -52,18 +52,9 @@ const Sidebar = props => {
     <Container className="p-3">
       <Row className="mt-4 mb-4">
         <div className="dropdown-section wow zoomIn">
-          <div
-            aria-label="Dropdown closed"
-            className="dropdown-movies"
-            onClick={handleDropdown}
-          >
+          <div className="dropdown-movies" onClick={handleDropdown}>
             <span className="dropdown-title-left">VER: </span>
-            <span
-              aria-label={`actual dropdown value ${titleDropdown}`}
-              className="dropdown-title-right"
-            >
-              {titleDropdown}
-            </span>
+            <span className="dropdown-title-right">{titleDropdown}</span>
             <span className="dropdown-chevron-down">
               <svg
                 width="13"
@@ -79,14 +70,12 @@ const Sidebar = props => {
 
           <ul className={'dropdown-options ' + (showDropdown ? 'active' : '')}>
             <li
-              aria-label="select popular movies"
               className={showCheckPopularFilms ? 'active' : ''}
               onClick={handleShowPopularFilms}
             >
               POPULARES
             </li>
             <li
-              aria-label="select my movies"
               className={showCheckMyMovies ? 'active' : ''}
               onClick={handleShowMyMovies}
             >

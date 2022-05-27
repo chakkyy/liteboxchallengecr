@@ -25,10 +25,7 @@ const Hero = props => {
               <h1 className="hero-content-title wow fadeInUp">{props.featuredFilm}</h1>
 
               <div className="hero-container-buttons">
-                <Button
-                  aria-label="Play featured movie"
-                  className="btn-primary wow slideInUp"
-                >
+                <Button className="btn-primary wow slideInUp">
                   <svg
                     width="14"
                     height="16"
@@ -46,10 +43,7 @@ const Hero = props => {
                   Reproducir
                 </Button>
 
-                <Button
-                  aria-label="My list of favorite movies"
-                  className="btn-secondary wow slideInUp"
-                >
+                <Button className="btn-secondary wow slideInUp">
                   <svg
                     width="15"
                     height="14"
