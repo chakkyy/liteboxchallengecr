@@ -10,6 +10,7 @@ const Hero = props => {
         src={'https://image.tmdb.org/t/p/original' + props.urlImage}
         alt="hero-featured-image"
         layout="fill"
+        loading="lazy"
       />
 
       <div className="hero-overlay"></div>

@@ -12,6 +12,7 @@ const PopularFilms = props => {
               src={'https://image.tmdb.org/t/p/w500' + movie.backdrop_path}
               alt={movie.title}
               layout="fill"
+              loading="lazy"
             />
 
             <div className="front-side">
