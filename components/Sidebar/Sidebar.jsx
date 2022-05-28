@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Container, Row } from 'react-bootstrap';
 import PopularFilms from '../PopularFilms/PopularFilms';
 import MyMovies from '../MyMovies/MyMovies';
+import { ChevronDownIcon } from '../icons';
 
 const Sidebar = ({ popularFilms }) => {
   const [showPopularFilms, setShowPopularFilms] = useState(true);
@@ -56,15 +57,7 @@ const Sidebar = ({ popularFilms }) => {
             <span className="dropdown-title-left">VER: </span>
             <span className="dropdown-title-right">{titleDropdown}</span>
             <span className="dropdown-chevron-down">
-              <svg
-                width="13"
-                height="8"
-                viewBox="0 0 13 8"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M1 1L6.54557 6.54557L12.0911 1" stroke="white" strokeWidth="2" />
-              </svg>
+              <ChevronDownIcon />
             </span>
           </div>
 
