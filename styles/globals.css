@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://use.typekit.net/oev3dfw.css');
 
 body {
-  font-family: 'Bebas Neue', cursive;
+  font-family: 'bebas-neue-by-fontfabric', cursive;
   background-color: #242424;
 }
 
@@ -347,133 +347,6 @@ ul {
 .list-films {
   position: relative;
   min-height: 774px;
-}
-
-.film-container {
-  position: relative;
-  height: 140px;
-  overflow: hidden;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-.film-container:hover .film-image {
-  transform: scale(1.2);
-}
-
-.film-image {
-  object-fit: cover;
-  object-position: center;
-  transition: all 1s ease-in-out;
-}
-
-.film-container .front-side {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 15px;
-}
-
-.film-container .front-side h6 {
-  color: #fff;
-  text-align: center;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 16px;
-  letter-spacing: 4px;
-  margin-top: 85px;
-}
-
-.film-container .front-side .front-side-icon {
-  position: absolute;
-  top: calc(50% - 20px);
-  left: calc(50% - 20px);
-}
-
-.film-container:hover .front-side {
-  display: none;
-}
-
-.film-container .back-side {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 15px;
-  background: rgba(36, 36, 36, 0.7);
-  display: none;
-}
-
-.film-container:hover .back-side {
-  display: block;
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-.film-container .back-side .back-side-container-title {
-  height: 100%;
-  display: flex;
-  align-items: center;
-}
-
-.film-container .back-side .back-side-icon {
-  display: inline-block;
-  width: 24px;
-  height: 24px;
-  background-image: url('../public/assets/icons/play-circle.svg');
-  background-size: cover;
-  transition: all 0.3s ease-in-out;
-}
-
-.film-container .back-side .back-side-icon:hover {
-  background-image: url('../public/assets/icons/play-hover.svg');
-}
-
-.film-container .back-side .back-side-title {
-  color: #fff;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 16px;
-  letter-spacing: 4px;
-  width: calc(100% - 24px);
-  padding-left: 10px;
-  margin-bottom: 0;
-}
-
-.film-container .back-side .back-side-average {
-  position: absolute;
-  left: 15px;
-  bottom: 15px;
-  color: #fff;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 12px;
-  letter-spacing: 2px;
-}
-
-.film-container .back-side .back-side-year {
-  position: absolute;
-  right: 15px;
-  bottom: 15px;
-  color: #fff;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 12px;
-  letter-spacing: 2px;
-}
-
-@media (min-width: 768px) and (max-width: 1024px) {
-  .film-container .front-side h6 {
-    font-size: 12px;
-    line-height: 12px;
-    margin-top: 90px;
-  }
-
-  .film-container .back-side .back-side-title {
-    font-size: 12px;
-  }
 }
 
 /* Show Movies Sidebar */

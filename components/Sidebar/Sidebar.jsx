@@ -3,7 +3,7 @@ import { Container, Row } from 'react-bootstrap';
 import PopularFilms from '../PopularFilms/PopularFilms';
 import MyMovies from '../MyMovies/MyMovies';
 
-const Sidebar = props => {
+const Sidebar = ({ popularFilms }) => {
   const [showPopularFilms, setShowPopularFilms] = useState(true);
   const [showMyMovies, setShowMyMovies] = useState(false);
   const [titleDropdown, setTitleDropdown] = useState('POPULARES');
@@ -86,7 +86,7 @@ const Sidebar = props => {
       </Row>
 
       <div className={'popular-movies ' + (showPopularFilms ? 'active' : '')}>
-        <PopularFilms popularFilms={props.popularFilms} />
+        <PopularFilms popularFilms={popularFilms} />
       </div>
 
       {(() => {

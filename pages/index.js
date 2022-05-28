@@ -4,7 +4,7 @@ import MainLayout from '../components/MainLayout/MainLayout';
 const Home = props => {
   const { featuredApiFilm, popularApiFilms } = props;
 
-  const featuredFilm = featuredApiFilm.slice(-4);
+  const featuredFilm = featuredApiFilm.find(film => film.title === 'Scream');
   const popularFilms = popularApiFilms.slice(0, 4);
 
   return (
@@ -13,8 +13,8 @@ const Home = props => {
       title="Liteflix | Home"
     >
       <Hero
-        featuredFilm={featuredFilm[0].title}
-        urlImage={featuredFilm[0].backdrop_path}
+        featuredFilm={featuredFilm.title}
+        urlImage={featuredFilm.backdrop_path}
         popularFilms={popularFilms}
       />
     </MainLayout>

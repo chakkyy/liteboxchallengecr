@@ -2,12 +2,12 @@ import Image from 'next/image';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import Sidebar from '../Sidebar/Sidebar';
 
-const Hero = props => {
+const Hero = ({ urlImage, featuredFilm, popularFilms }) => {
   return (
     <div className="hero">
       <Image
         className="hero-featured-image"
-        src={'https://image.tmdb.org/t/p/original' + props.urlImage}
+        src={'https://image.tmdb.org/t/p/original' + urlImage}
         alt="hero-featured-image"
         layout="fill"
         loading="lazy"
@@ -22,7 +22,7 @@ const Hero = props => {
               <h6 className="wow fadeInDown">
                 ORIGINAL DE <strong>LITEFLIX</strong>
               </h6>
-              <h1 className="hero-content-title wow fadeInUp">{props.featuredFilm}</h1>
+              <h1 className="hero-content-title wow fadeInUp">{featuredFilm}</h1>
 
               <div className="hero-container-buttons">
                 <Button className="btn-primary wow slideInUp">
@@ -62,7 +62,7 @@ const Hero = props => {
 
           <Col md={4} lg={3}>
             <section className="list-films">
-              <Sidebar popularFilms={props.popularFilms} />
+              <Sidebar popularFilms={popularFilms} />
             </section>
           </Col>
         </Row>
