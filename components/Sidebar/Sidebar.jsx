@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { Container, Row } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 import PopularFilms from '../PopularFilms/PopularFilms';
 import MyMovies from '../MyMovies/MyMovies';
 import { ChevronDownIcon } from '../icons';
+import { LiteSidebar } from './styles';
 
 const Sidebar = ({ popularFilms }) => {
   const [showPopularFilms, setShowPopularFilms] = useState(true);
@@ -50,7 +51,7 @@ const Sidebar = ({ popularFilms }) => {
   };
 
   return (
-    <Container className="p-3">
+    <LiteSidebar>
       <Row className="mt-4 mb-4">
         <div className="dropdown-section wow zoomIn">
           <div className="dropdown-movies" onClick={handleDropdown}>
@@ -78,20 +79,20 @@ const Sidebar = ({ popularFilms }) => {
         </div>
       </Row>
 
-      <div className={'popular-movies ' + (showPopularFilms ? 'active' : '')}>
+      <div className={'popular-movies' + (showPopularFilms ? 'active' : '')}>
         <PopularFilms popularFilms={popularFilms} />
       </div>
 
       {(() => {
         if (showMyMovies) {
           return (
-            <div className={'my-movies ' + (showMyMovies ? 'active' : '')}>
+            <div className={'my-movies' + (showMyMovies ? 'active' : '')}>
               <MyMovies />
             </div>
           );
         }
       })()}
-    </Container>
+    </LiteSidebar>
   );
 };
 

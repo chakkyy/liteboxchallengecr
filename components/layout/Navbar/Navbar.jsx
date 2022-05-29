@@ -1,8 +1,16 @@
 import { useState } from 'react';
 import Image from 'next/image';
-import { Navbar, Nav, Container, Modal } from 'react-bootstrap';
-import AddMyMovie from '../AddMyMovie/AddMyMovie';
-import { BellIcon, LiteflixLogo, MenuIcon, MobileAddMovieIcon, PlusIcon } from '../icons';
+import { Navbar, Nav, Container } from 'react-bootstrap';
+import AddMyMovie from '../../AddMyMovie/AddMyMovie';
+import {
+  BellIcon,
+  LiteflixLogo,
+  MenuIcon,
+  MobileAddMovieIcon,
+  PlusIcon,
+} from '../../icons';
+import { LiteNavbar } from './styles';
+import { LiteModal } from '../../AddMyMovie/styles';
 
 const NavbarTop = () => {
   const [showModal, setShowModal] = useState(false);
@@ -12,7 +20,7 @@ const NavbarTop = () => {
 
   return (
     <>
-      <Navbar className="navbar" bg="light" expand="lg">
+      <LiteNavbar bg="light" expand="lg">
         <Container>
           <span className="trigger-modal" onClick={handleShowModal}>
             <MobileAddMovieIcon />
@@ -47,18 +55,17 @@ const NavbarTop = () => {
             </Nav.Link>
           </Nav>
         </Container>
-      </Navbar>
+      </LiteNavbar>
 
-      <Modal
+      <LiteModal
         size="lg"
-        className="wow slideInUp"
         aria-labelledby="contained-modal-title-vcenter"
         centered
         show={showModal}
         onHide={handleCloseModal}
       >
         <AddMyMovie onHide={handleCloseModal} />
-      </Modal>
+      </LiteModal>
     </>
   );
 };

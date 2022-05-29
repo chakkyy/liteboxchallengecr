@@ -1,5 +1,5 @@
-import Hero from '../components/Hero/Hero';
-import MainLayout from '../components/MainLayout/MainLayout';
+import Hero from '../components/layout/Hero/Hero';
+import MainLayout from '../components/layout/MainLayout/MainLayout';
 
 const Home = props => {
   const { featuredApiFilm, popularApiFilms } = props;

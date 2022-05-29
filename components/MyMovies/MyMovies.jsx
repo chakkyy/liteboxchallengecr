@@ -19,7 +19,7 @@ const MyMovies = () => {
     if (showData) {
       return (
         <>
-          {dataLocalStorage.map((movie, index) => (
+          {dataLocalStorage.slice(0, 4).map((movie, index) => (
             <MovieCard key={index} title={movie.title} image={movie.image} />
           ))}
         </>

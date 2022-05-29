@@ -1,11 +1,12 @@
 import Image from 'next/image';
 import { Container, Row, Col, Button } from 'react-bootstrap';
-import Sidebar from '../Sidebar/Sidebar';
-import { PlayIcon, PlusIcon } from '../icons';
+import Sidebar from '../../Sidebar/Sidebar';
+import { PlayIcon, PlusIcon } from '../../icons';
+import { LiteHero } from './styles';
 
 const Hero = ({ urlImage, featuredFilm, popularFilms }) => {
   return (
-    <div className="hero">
+    <LiteHero>
       <Image
         className="hero-featured-image"
         src={'https://image.tmdb.org/t/p/original' + urlImage}
@@ -44,7 +45,7 @@ const Hero = ({ urlImage, featuredFilm, popularFilms }) => {
           </Col>
         </Row>
       </Container>
-    </div>
+    </LiteHero>
   );
 };
 
