@@ -10,11 +10,10 @@ const MyMovies = () => {
     if (localStorage.getItem('dataMovie') !== null) {
       const getData = localStorage.getItem('dataMovie');
       const dataMovieLocalStorage = JSON.parse(getData);
-
       setDataLocalStorage(dataMovieLocalStorage);
     }
     setShowData(true);
-  }, [showData, dataLocalStorage]);
+  }, [showData]);
 
   const dataDone = () => {
     if (showData) {
