@@ -1,5 +1,7 @@
 import Hero from '../components/layout/Hero/Hero';
 import MainLayout from '../components/layout/MainLayout/MainLayout';
+import { getFeaturedFilm } from './api/getFeaturedFilm';
+import { getPopularFilms } from './api/getPopularFilms';
 
 const Home = props => {
   const { featuredApiFilm, popularApiFilms } = props;
@@ -22,18 +24,13 @@ const Home = props => {
 };
 
 export async function getServerSideProps() {
-  const urlFeaturedFilm = `${process.env.NEXT_PUBLIC_FEATURED_API_URL}api_key=${process.env.NEXT_PUBLIC_API_KEY}`;
-  const resFeaturedFilm = await fetch(urlFeaturedFilm);
-  const dataFeaturedFilm = await resFeaturedFilm.json();
-
-  const urlPopularFilms = `${process.env.NEXT_PUBLIC_POPULAR_API_URL}api_key=${process.env.NEXT_PUBLIC_API_KEY}`;
-  const resPopularFilms = await fetch(urlPopularFilms);
-  const dataPopularFilms = await resPopularFilms.json();
+  const featuredApiFilm = await getFeaturedFilm();
+  const popularApiFilms = await getPopularFilms();
 
   return {
     props: {
-      featuredApiFilm: dataFeaturedFilm.results,
-      popularApiFilms: dataPopularFilms.results,
+      featuredApiFilm: featuredApiFilm.results,
+      popularApiFilms: popularApiFilms.results,
     },
   };
 }

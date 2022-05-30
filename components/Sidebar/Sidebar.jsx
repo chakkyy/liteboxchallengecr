@@ -7,16 +7,13 @@ import { LiteSidebar } from './styles';
 
 const Sidebar = ({ popularFilms }) => {
   const [showPopularFilms, setShowPopularFilms] = useState(true);
-  const [showMyMovies, setShowMyMovies] = useState(false);
   const [titleDropdown, setTitleDropdown] = useState('POPULARES');
   const [showDropdown, setShowDropdown] = useState(false);
-
   const [showCheckPopularFilms, setShowCheckPopularFilms] = useState(true);
   const [showCheckMyMovies, setShowCheckMyMovies] = useState(false);
 
   const handleShowPopularFilms = () => {
     setShowPopularFilms(true);
-    setShowMyMovies(false);
     setTitleDropdown('POPULARES');
     setShowDropdown(false);
     setShowCheckMyMovies(false);
@@ -30,7 +27,6 @@ const Sidebar = ({ popularFilms }) => {
 
   const handleShowMyMovies = () => {
     setShowPopularFilms(false);
-    setShowMyMovies(true);
     setTitleDropdown('MIS PELÍCULAS');
     setShowDropdown(false);
     setShowCheckPopularFilms(false);
@@ -78,20 +74,15 @@ const Sidebar = ({ popularFilms }) => {
           </ul>
         </div>
       </Row>
-
-      <div className={'popular-movies' + (showPopularFilms ? 'active' : '')}>
-        <PopularFilms popularFilms={popularFilms} />
-      </div>
-
-      {(() => {
-        if (showMyMovies) {
-          return (
-            <div className={'my-movies' + (showMyMovies ? 'active' : '')}>
-              <MyMovies />
-            </div>
-          );
-        }
-      })()}
+      {showPopularFilms ? (
+        <div className="popular-movies active">
+          <PopularFilms popularFilms={popularFilms} />
+        </div>
+      ) : (
+        <div className="my-movies active">
+          <MyMovies />
+        </div>
+      )}
     </LiteSidebar>
   );
 };
