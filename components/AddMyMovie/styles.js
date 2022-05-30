@@ -126,6 +126,7 @@ export const LiteModal = styled(Modal).attrs(() => ({
     .container-drag-drop.active,
     .container-drag-drop.active:hover {
       border: solid #64eebc 2px;
+      background-color: #54eebc33;
       transition: all 0.3s ease-in-out;
     }
 
@@ -196,5 +197,35 @@ export const LiteModal = styled(Modal).attrs(() => ({
         letter-spacing: 4px;
       }
     }
+  }
+`;
+
+export const FailedUploadContainer = styled.div`
+  /* background: tomato; */
+  width: 85%;
+  height: 150px;
+  margin: 0 auto;
+  margin-top: 15px;
+  margin-bottom: 35px;
+  color: #fff;
+  text-align: left;
+  p {
+    font-size: 18px;
+    font-weight: 300;
+  }
+  .error-fill {
+    background-color: red;
+    width: 100%;
+    height: 10px;
+  }
+  .retry-button {
+    background-color: transparent;
+    width: auto;
+    float: right;
+    border: none;
+    color: #fff;
+    margin-top: 18px;
+    letter-spacing: 4px;
+    font-weight: 700;
   }
 `;

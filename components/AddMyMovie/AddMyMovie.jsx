@@ -1,16 +1,17 @@
 import { useState, useEffect } from 'react';
-import { Modal, InputGroup, FormControl, Button } from 'react-bootstrap';
-import { ClipIcon, LiteflixLogo } from '../icons';
+import { Modal, Button } from 'react-bootstrap';
+import { LiteflixLogo } from '../icons';
+import Step1 from './Step1';
+import Step2 from './Step2';
 
 const AddMyMovie = ({ onHide }) => {
   const [dragArea, setDragArea] = useState(false);
   const [loadImageDrop, setLoadImageDrop] = useState(false);
   const [disabledButton, setDisabledButton] = useState(true);
-  const [view_1, setView_1] = useState(true);
-  const [view_2, setView_2] = useState(false);
-
+  const [step, setStep] = useState('step1');
   const [imageMovie, setImageMovie] = useState('');
   const [titleMovie, setTitleMovie] = useState('');
+  const [failed, setFailed] = useState(false);
 
   const dropImage = event => {
     event.preventDefault();
@@ -31,7 +32,7 @@ const AddMyMovie = ({ onHide }) => {
           validateInputs();
         };
       } else {
-        console.log('File not allowed');
+        setFailed(true);
       }
     }
   };
@@ -58,6 +59,11 @@ const AddMyMovie = ({ onHide }) => {
     }
   };
 
+  const handleRetryUpload = () => {
+    setFailed(false);
+    setDragArea(false);
+  };
+
   const loadDataLocalStorage = () => {
     if (localStorage.getItem('dataMovie') !== null) {
       const getData = localStorage.getItem('dataMovie');
@@ -70,9 +76,9 @@ const AddMyMovie = ({ onHide }) => {
 
       localStorage.setItem(
         'dataMovie',
-        JSON.stringify([...dataMovieLocalStorage, dataMovie])
+        JSON.stringify([dataMovie, ...dataMovieLocalStorage])
       );
-      setView_1(false);
+      setStep('step2');
     } else {
       const dataMovie = {
         image: imageMovie,
@@ -80,131 +86,62 @@ const AddMyMovie = ({ onHide }) => {
       };
 
       localStorage.setItem('dataMovie', JSON.stringify([dataMovie]));
-      setView_1(false);
+      setStep('step2');
     }
   };
 
   useEffect(() => {
     validateInputs();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [titleMovie, imageMovie, view_1]);
+  }, [titleMovie, imageMovie, Step1]);
 
   return (
     <>
       <Modal.Header closeButton>
         <Modal.Title>
-          {(() => {
-            if (!view_2) {
-              return 'AGREGAR PELÍCULA';
-            } else {
-              return <LiteflixLogo />;
-            }
-          })()}
+          {step === 'step1' ? 'AGREGAR PELÍCULA' : <LiteflixLogo />}
         </Modal.Title>
       </Modal.Header>
-
       <Modal.Body>
-        {(() => {
-          if (view_1) {
-            return (
-              <>
-                <div
-                  onDragEnter={event => handleDragEnter(event)}
-                  onDragLeave={event => handleDragLeave(event)}
-                  className={'container-drag-drop ' + (dragArea ? 'active' : '')}
-                >
-                  <h6>
-                    <ClipIcon />{' '}
-                    {(() => {
-                      if (!loadImageDrop) {
-                        return (
-                          <>
-                            <span className="text-add-file">AGREGÁ UN ARCHIVO </span>
-                            <span className="text-drag-file">
-                              O ARRASTRALO Y SOLTALO AQUÍ
-                            </span>
-                          </>
-                        );
-                      } else {
-                        return <span className="text-add-file">IMAGEN CARGADA</span>;
-                      }
-                    })()}
-                  </h6>
-
-                  <InputGroup className="mb-3 drop-image">
-                    <FormControl
-                      type="file"
-                      multiple
-                      onChange={event => {
-                        dropImage(event);
-                      }}
-                    />
-                  </InputGroup>
-                </div>
-
-                <InputGroup className="mb-3 input-title">
-                  <FormControl
-                    placeholder="TÍTULO"
-                    onChange={event => {
-                      handleTitleMovie(event);
-                    }}
-                  />
-                </InputGroup>
-              </>
-            );
-          }
-
-          if (view_2) {
-            return (
-              <div className="modal-view-2">
-                <div>
-                  <div className="loader">
-                    <div className="loader-background">
-                      <div className="loader-fill"></div>
-                    </div>
-                  </div>
-
-                  <div className="message wow fadeIn" data-wow-delay="4s">
-                    <h4>¡FELICITACIONES!</h4>
-                    <p>{titleMovie} FUE CORRECTAMENTE SUBIDA.</p>
-                  </div>
-                </div>
-              </div>
-            );
-          }
-        })()}
-
+        {step === 'step1' ? (
+          <Step1
+            handleDragEnter={handleDragEnter}
+            handleDragLeave={handleDragLeave}
+            dragArea={dragArea}
+            loadImageDrop={loadImageDrop}
+            dropImage={dropImage}
+            handleTitleMovie={handleTitleMovie}
+            failed={failed}
+            handleRetryUpload={handleRetryUpload}
+          />
+        ) : (
+          <Step2 titleMovie={titleMovie} />
+        )}
         <div className="container-btn-action">
-          {(() => {
-            if (!view_2) {
-              return (
-                <Button
-                  className="btn-action"
-                  disabled={disabledButton}
-                  onClick={() => {
-                    loadDataLocalStorage();
-                    setView_2(true);
-                    setTimeout(() => {
-                      setDisabledButton(true);
-                    }, 100);
-                  }}
-                >
-                  SUBIR PELÍCULA
-                </Button>
-              );
-            } else {
-              return (
-                <Button
-                  onClick={() => {
-                    onHide();
-                  }}
-                  className="btn-action"
-                >
-                  IR A HOME
-                </Button>
-              );
-            }
-          })()}
+          {step === 'step1' ? (
+            <Button
+              className="btn-action"
+              disabled={disabledButton}
+              onClick={() => {
+                loadDataLocalStorage();
+                setStep('step2');
+                setTimeout(() => {
+                  setDisabledButton(true);
+                }, 100);
+              }}
+            >
+              SUBIR PELÍCULA
+            </Button>
+          ) : (
+            <Button
+              onClick={() => {
+                onHide();
+              }}
+              className="btn-action"
+            >
+              IR A HOME
+            </Button>
+          )}
         </div>
       </Modal.Body>
     </>
