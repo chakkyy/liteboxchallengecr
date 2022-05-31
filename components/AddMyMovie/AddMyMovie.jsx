@@ -5,8 +5,7 @@ import Step1 from './Step1';
 import Step2 from './Step2';
 
 const AddMyMovie = ({ onHide }) => {
-  const [dragArea, setDragArea] = useState(false);
-  const [loadImageDrop, setLoadImageDrop] = useState(false);
+  const [loadedImage, setLoadedImage] = useState(false);
   const [disabledButton, setDisabledButton] = useState(true);
   const [step, setStep] = useState('step1');
   const [imageMovie, setImageMovie] = useState('');
@@ -26,8 +25,7 @@ const AddMyMovie = ({ onHide }) => {
         fileReader.readAsDataURL(file);
 
         fileReader.onload = event => {
-          setDragArea(true);
-          setLoadImageDrop(true);
+          setLoadedImage(true);
           setImageMovie(event.target.result);
           validateInputs();
         };
@@ -35,16 +33,6 @@ const AddMyMovie = ({ onHide }) => {
         setFailed(true);
       }
     }
-  };
-
-  const handleDragEnter = event => {
-    event.preventDefault();
-    setDragArea(true);
-  };
-
-  const handleDragLeave = event => {
-    event.preventDefault();
-    setDragArea(false);
   };
 
   const handleTitleMovie = event => {
@@ -61,7 +49,7 @@ const AddMyMovie = ({ onHide }) => {
 
   const handleRetryUpload = () => {
     setFailed(false);
-    setDragArea(false);
+    setLoadedImage(false);
   };
 
   const loadDataLocalStorage = () => {
@@ -105,10 +93,7 @@ const AddMyMovie = ({ onHide }) => {
       <Modal.Body>
         {step === 'step1' ? (
           <Step1
-            handleDragEnter={handleDragEnter}
-            handleDragLeave={handleDragLeave}
-            dragArea={dragArea}
-            loadImageDrop={loadImageDrop}
+            loadedImage={loadedImage}
             dropImage={dropImage}
             handleTitleMovie={handleTitleMovie}
             failed={failed}

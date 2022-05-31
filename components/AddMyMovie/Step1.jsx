@@ -4,10 +4,7 @@ import { ClipIcon } from '../icons';
 import { FailedUploadContainer } from './styles';
 
 const Step1 = ({
-  handleDragEnter,
-  handleDragLeave,
-  dragArea,
-  loadImageDrop,
+  loadedImage,
   dropImage,
   handleTitleMovie,
   failed,
@@ -27,14 +24,10 @@ const Step1 = ({
           </button>
         </FailedUploadContainer>
       ) : (
-        <div
-          onDragEnter={event => handleDragEnter(event)}
-          onDragLeave={event => handleDragLeave(event)}
-          className={'container-drag-drop ' + (dragArea ? 'active' : '')}
-        >
+        <div className={'container-drag-drop ' + (loadedImage ? 'active' : '')}>
           <h6>
             <ClipIcon />{' '}
-            {loadImageDrop ? (
+            {loadedImage ? (
               <span className="text-add-file">IMAGEN CARGADA</span>
             ) : (
               <>
