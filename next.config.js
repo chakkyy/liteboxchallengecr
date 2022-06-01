@@ -4,6 +4,7 @@ const nextConfig = {
   images: {
     domains: ['image.tmdb.org'],
   },
+  pageExtensions: ['jsx', 'js', 'tsx', 'ts'],
   i18n: {
     locales: ['es'],
     defaultLocale: 'es',
