@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { FormControl, InputGroup } from 'react-bootstrap';
 import { ClipIcon } from '../icons';
 import { FailedUploadContainer } from './styles';
 
-const Step1 = ({
+interface Props {
+  loadedImage: boolean;
+  failed: boolean;
+  dropImage: (event: React.BaseSyntheticEvent) => void;
+  handleTitleMovie: (event: React.BaseSyntheticEvent) => void;
+  handleRetryUpload: (event: React.MouseEvent<HTMLElement>) => void;
+}
+
+const Step1: FC<Props> = ({
   loadedImage,
   dropImage,
   handleTitleMovie,

@@ -1,10 +1,14 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, FC } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { LiteflixLogo } from '../icons';
 import Step1 from './Step1';
 import Step2 from './Step2';
 
-const AddMyMovie = ({ onHide }) => {
+interface Props {
+  onHide: () => void;
+}
+
+const AddMyMovie: FC<Props> = ({ onHide }) => {
   const [loadedImage, setLoadedImage] = useState(false);
   const [disabledButton, setDisabledButton] = useState(true);
   const [step, setStep] = useState('step1');
@@ -12,11 +16,11 @@ const AddMyMovie = ({ onHide }) => {
   const [titleMovie, setTitleMovie] = useState('');
   const [failed, setFailed] = useState(false);
 
-  const dropImage = event => {
+  const dropImage = (event: React.BaseSyntheticEvent) => {
     event.preventDefault();
     const file = event.target.files[0];
 
-    if (file !== undefined) {
+    if (file !== null) {
       const fileType = file.type;
       const validExtension = ['image/jpeg', 'image/jpg', 'image/png'];
 
@@ -24,9 +28,9 @@ const AddMyMovie = ({ onHide }) => {
         const fileReader = new FileReader();
         fileReader.readAsDataURL(file);
 
-        fileReader.onload = event => {
+        fileReader.onload = (event: ProgressEvent<FileReader>) => {
           setLoadedImage(true);
-          setImageMovie(event.target.result);
+          setImageMovie(event?.target?.result as string);
           validateInputs();
         };
       } else {
@@ -35,7 +39,8 @@ const AddMyMovie = ({ onHide }) => {
     }
   };
 
-  const handleTitleMovie = event => {
+  const handleTitleMovie = (event: React.BaseSyntheticEvent) => {
+    console.log('🚀 ~ file: AddMyMovie.tsx ~ line 40 ~ handleTitleMovie ~ event', event);
     setTitleMovie(event.target.value);
   };
 
@@ -53,29 +58,25 @@ const AddMyMovie = ({ onHide }) => {
   };
 
   const loadDataLocalStorage = () => {
+    let date = new Date();
+    const dataMovie = {
+      image: imageMovie,
+      title: titleMovie,
+      addedDate: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
+    };
+
     if (localStorage.getItem('dataMovie') !== null) {
       const getData = localStorage.getItem('dataMovie');
-      const dataMovieLocalStorage = JSON.parse(getData);
-
-      const dataMovie = {
-        image: imageMovie,
-        title: titleMovie,
-      };
+      const dataMovieLocalStorage = JSON.parse(getData as string);
 
       localStorage.setItem(
         'dataMovie',
         JSON.stringify([dataMovie, ...dataMovieLocalStorage])
       );
-      setStep('step2');
     } else {
-      const dataMovie = {
-        image: imageMovie,
-        title: titleMovie,
-      };
-
       localStorage.setItem('dataMovie', JSON.stringify([dataMovie]));
-      setStep('step2');
     }
+    setStep('step2');
   };
 
   useEffect(() => {

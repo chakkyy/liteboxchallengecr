@@ -1,8 +1,13 @@
-import { useEffect } from 'react';
+import { useEffect, FC } from 'react';
 import Head from 'next/head';
 import Navbar from '../Navbar/Navbar';
 
-const MainLayout = ({ title, description, children }) => {
+interface Props {
+  title: string;
+  description: string;
+  children: JSX.Element;
+}
+const MainLayout: FC<Props> = ({ title, description, children }) => {
   const isServer = typeof window === 'undefined';
   const WOW = !isServer ? require('wow.js') : null;
 

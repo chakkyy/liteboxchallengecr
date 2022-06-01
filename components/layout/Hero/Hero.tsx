@@ -1,10 +1,19 @@
+import { FC } from 'react';
 import Image from 'next/image';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import Sidebar from '../../Sidebar/Sidebar';
 import { PlayIcon, PlusIcon } from '../../icons';
 import { LiteHero } from './styles';
+import { Movie } from '../../../interfaces';
 
-const Hero = ({ urlImage, featuredFilm, popularFilms }) => {
+interface Props {
+  urlImage: string;
+  //featured film es un string por el find scream
+  featuredFilm: string;
+  popularFilms: Movie[];
+}
+
+const Hero: FC<Props> = ({ urlImage, featuredFilm, popularFilms }) => {
   return (
     <LiteHero>
       <Image

@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react';
+import { Movie } from '../../interfaces';
 import MovieCard from '../commons/MovieCard/MovieCard';
 import { EmptyMovies } from './styles';
 
 const MyMovies = () => {
-  const [dataLocalStorage, setDataLocalStorage] = useState([]);
+  const [dataLocalStorage, setDataLocalStorage] = useState<Array<Movie>>([]);
   const [showData, setShowData] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem('dataMovie') !== null) {
       const getData = localStorage.getItem('dataMovie');
-      const dataMovieLocalStorage = JSON.parse(getData);
+      const dataMovieLocalStorage = JSON.parse(getData as string);
       setDataLocalStorage(dataMovieLocalStorage);
     }
     setShowData(true);
@@ -23,7 +24,12 @@ const MyMovies = () => {
             dataLocalStorage
               .slice(0, 4)
               .map((movie, index) => (
-                <MovieCard key={index} title={movie.title} image={movie.image} />
+                <MovieCard
+                  key={index}
+                  title={movie.title}
+                  image={movie.image}
+                  addedDate={movie.addedDate}
+                />
               ))
           ) : (
             <EmptyMovies>

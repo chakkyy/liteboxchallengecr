@@ -1,6 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FC } from 'react';
 
-const Step2 = ({ titleMovie }) => {
+interface Props {
+  titleMovie: string;
+}
+
+const Step2: FC<Props> = ({ titleMovie }) => {
   const [percentage, setPercentage] = useState(0);
 
   useEffect(() => {

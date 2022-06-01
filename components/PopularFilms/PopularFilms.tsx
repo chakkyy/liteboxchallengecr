@@ -1,11 +1,17 @@
+import { FC } from 'react';
+import { Movie } from '../../interfaces';
 import MovieCard from '../commons/MovieCard/MovieCard';
 
-const PopularFilms = ({ popularFilms }) => {
+interface Props {
+  popularFilms: Movie[];
+}
+
+const PopularFilms: FC<Props> = ({ popularFilms }) => {
   return (
     <>
-      {popularFilms.map(movie => (
+      {popularFilms.map((movie, index) => (
         <MovieCard
-          key={movie.id}
+          key={index}
           title={movie.title}
           backdrop_path={movie.backdrop_path}
           vote_average={movie.vote_average}

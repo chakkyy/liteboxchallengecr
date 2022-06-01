@@ -1,9 +1,16 @@
 import Hero from '../components/layout/Hero/Hero';
 import MainLayout from '../components/layout/MainLayout/MainLayout';
+import { Movie } from '../interfaces';
 import { getFeaturedFilm } from './api/getFeaturedFilm';
 import { getPopularFilms } from './api/getPopularFilms';
+import { GetServerSideProps } from 'next';
 
-const Home = props => {
+interface HomeProps {
+  featuredApiFilm: Movie[];
+  popularApiFilms: Movie[];
+}
+
+const Home = (props: HomeProps) => {
   const { featuredApiFilm, popularApiFilms } = props;
 
   const featuredFilm = featuredApiFilm.find(film => film.title === 'Scream');
@@ -15,15 +22,15 @@ const Home = props => {
       title="Liteflix | Home"
     >
       <Hero
-        featuredFilm={featuredFilm.title}
-        urlImage={featuredFilm.backdrop_path}
+        featuredFilm={featuredFilm!.title}
+        urlImage={featuredFilm!.backdrop_path}
         popularFilms={popularFilms}
       />
     </MainLayout>
   );
 };
 
-export async function getServerSideProps() {
+export const getServerSideProps: GetServerSideProps = async () => {
   const featuredApiFilm = await getFeaturedFilm();
   const popularApiFilms = await getPopularFilms();
 
@@ -33,6 +40,6 @@ export async function getServerSideProps() {
       popularApiFilms: popularApiFilms.results,
     },
   };
-}
+};
 
 export default Home;

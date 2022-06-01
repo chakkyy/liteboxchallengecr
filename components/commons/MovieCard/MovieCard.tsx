@@ -1,19 +1,22 @@
+import { FC } from 'react';
 import Image from 'next/image';
 import { CirclePlayIcon, StarIcon } from '../../icons';
 import { MovieCardContainer } from './styles';
+import { Movie } from '../../../interfaces';
 
-const MovieCard = ({
+const MovieCard: FC<Movie> = ({
   title,
   image,
   backdrop_path,
-  vote_average = '8.9',
-  release_date = '2022',
+  vote_average,
+  release_date,
+  addedDate,
 }) => {
   return (
     <MovieCardContainer>
       <Image
         className="film-image"
-        src={backdrop_path ? 'https://image.tmdb.org/t/p/w500' + backdrop_path : image}
+        src={backdrop_path ? `https://image.tmdb.org/t/p/w500${backdrop_path}` : image}
         alt={title}
         layout="fill"
         loading="lazy"
@@ -32,12 +35,16 @@ const MovieCard = ({
           <span className="back-side-icon" />
           <h6 className="back-side-title">{title}</h6>
         </div>
-
-        <span className="back-side-average">
-          <StarIcon /> {vote_average}
-        </span>
-
-        <span className="back-side-year">{release_date.slice(0, 4)}</span>
+        {vote_average && (
+          <span className="back-side-average">
+            <StarIcon /> {vote_average}
+          </span>
+        )}
+        {release_date ? (
+          <span className="back-side-year">{release_date.slice(0, 4)}</span>
+        ) : (
+          <span className="back-side-average">{`Añadido: ${addedDate}`}</span>
+        )}
       </div>
     </MovieCardContainer>
   );

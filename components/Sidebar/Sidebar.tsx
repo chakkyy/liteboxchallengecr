@@ -1,11 +1,16 @@
-import { useState } from 'react';
+import { useState, FC } from 'react';
 import { Row } from 'react-bootstrap';
 import PopularFilms from '../PopularFilms/PopularFilms';
 import MyMovies from '../MyMovies/MyMovies';
 import { ChevronDownIcon } from '../icons';
 import { LiteSidebar } from './styles';
+import { Movie } from '../../interfaces';
 
-const Sidebar = ({ popularFilms }) => {
+interface Props {
+  popularFilms: Movie[];
+}
+
+const Sidebar: FC<Props> = ({ popularFilms }) => {
   const [showPopularFilms, setShowPopularFilms] = useState(true);
   const [titleDropdown, setTitleDropdown] = useState('POPULARES');
   const [showDropdown, setShowDropdown] = useState(false);
