@@ -39,9 +39,9 @@ Por último abrir https://localhost:3000/ en el navegador y boilá! 🚀
 
 ## 🛒 Objetivo del challenge
 
-• El proyecto consiste en el desarrollo un Catálogo de Películas dinámico.
-• Se deberá listar una película destacada, y películas populares provenientes de una API pública.
-• Sin embargo, el catálogo puede ser actualizado por el usuario, pudiendo agregar nuevas películas a la categoría “Mis películas”. No se dispone de un endpoint para agregar nuevas películas, sino que simplemente deben guardarse imágenes en localStorage.
+- El proyecto consiste en el desarrollo un Catálogo de Películas dinámico.
+- Se deberá listar una película destacada, y películas populares provenientes de una API pública.
+- Sin embargo, el catálogo puede ser actualizado por el usuario, pudiendo agregar nuevas películas a la categoría “Mis películas”. No se dispone de un endpoint para agregar nuevas películas, sino que simplemente deben guardarse imágenes en localStorage.
 <br />
 
 ## 🧱 Tech
