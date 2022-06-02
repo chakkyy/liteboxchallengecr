@@ -1,34 +1,54 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div align="center">
+<img src='https://i.imgur.com/ENpgWkX.jpg' alt="LiteFlix" />
+<img src='https://i.imgur.com/u3xybqy.jpg' alt="LiteFlix" />
 
-## Getting Started
+ <h1><strong>Challenge Liteflix</strong>
+ <small>by Carlos Ramirez</small>
+ </h1>
+</div>
 
-First, run the development server:
+<br />
 
+## 🤔 Get started
+
+1~ Clonamos el repo
 ```bash
-npm run dev
-# or
-yarn dev
+git clone https://github.com/chakkyy/liteboxchallengecr
+
+cd liteboxchallengecr
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2~ Instalamos las dependencias
+```bash
+yarn install
+    or
+npm install
+```
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+3~ Corremos el proyecto
+```bash
+yarn dev
+    or
+npm run dev
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Por último abrir https://localhost:3000/ en el navegador y boilá! 🚀
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+<br />
 
-## Learn More
+## 🛒 Objetivo del challenge
 
-To learn more about Next.js, take a look at the following resources:
+• El proyecto consiste en el desarrollo un Catálogo de Películas dinámico.
+• Se deberá listar una película destacada, y películas populares provenientes de una API pública.
+• Sin embargo, el catálogo puede ser actualizado por el usuario, pudiendo agregar nuevas películas a la categoría “Mis películas”. No se dispone de un endpoint para agregar nuevas películas, sino que simplemente deben guardarse imágenes en localStorage.
+<br />
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🧱 Tech
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Typescript
+- Next.js
+- Styled-Components
+- WOW.js
+- React Bootstrap
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
