@@ -12,8 +12,7 @@ const AddMyMovie: FC<Props> = ({ onHide }) => {
   const [loadedImage, setLoadedImage] = useState(false);
   const [disabledButton, setDisabledButton] = useState(true);
   const [step, setStep] = useState('step1');
-  const [imageMovie, setImageMovie] = useState('');
-  const [titleMovie, setTitleMovie] = useState('');
+  const [newMovie, setNewMovie] = useState({ image: '', title: '', addedDate: '' });
   const [failed, setFailed] = useState(false);
 
   const dropImage = (event: React.BaseSyntheticEvent) => {
@@ -30,7 +29,7 @@ const AddMyMovie: FC<Props> = ({ onHide }) => {
 
         fileReader.onload = (event: ProgressEvent<FileReader>) => {
           setLoadedImage(true);
-          setImageMovie(event?.target?.result as string);
+          setNewMovie({ ...newMovie, image: event?.target?.result as string });
           validateInputs();
         };
       } else {
@@ -40,12 +39,11 @@ const AddMyMovie: FC<Props> = ({ onHide }) => {
   };
 
   const handleTitleMovie = (event: React.BaseSyntheticEvent) => {
-    console.log('🚀 ~ file: AddMyMovie.tsx ~ line 40 ~ handleTitleMovie ~ event', event);
-    setTitleMovie(event.target.value);
+    setNewMovie({ ...newMovie, title: event.target.value });
   };
 
   const validateInputs = () => {
-    if (imageMovie != '' && titleMovie != '') {
+    if (newMovie.image != '' && newMovie.title != '') {
       setDisabledButton(false);
     } else {
       setDisabledButton(true);
@@ -57,11 +55,23 @@ const AddMyMovie: FC<Props> = ({ onHide }) => {
     setLoadedImage(false);
   };
 
+  const handleCancel = () => {
+    setNewMovie({ image: '', title: '', addedDate: '' });
+    setStep('step1');
+    setLoadedImage(false);
+    deleteLastItemInStorage();
+  };
+
+  const deleteLastItemInStorage = () => {
+    const array = JSON.parse(localStorage.getItem('dataMovie') || '[]');
+    const newArray = array.reverse().slice(0, array.length - 1);
+    localStorage.setItem('dataMovie', JSON.stringify(newArray.reverse()));
+  };
+
   const loadDataLocalStorage = () => {
-    let date = new Date();
+    const date = new Date();
     const dataMovie = {
-      image: imageMovie,
-      title: titleMovie,
+      ...newMovie,
       addedDate: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`,
     };
 
@@ -82,7 +92,7 @@ const AddMyMovie: FC<Props> = ({ onHide }) => {
   useEffect(() => {
     validateInputs();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [titleMovie, imageMovie, Step1]);
+  }, [newMovie]);
 
   return (
     <>
@@ -101,7 +111,7 @@ const AddMyMovie: FC<Props> = ({ onHide }) => {
             handleRetryUpload={handleRetryUpload}
           />
         ) : (
-          <Step2 titleMovie={titleMovie} />
+          <Step2 onCancel={handleCancel} titleMovie={newMovie.title} />
         )}
         <div className="container-btn-action">
           {step === 'step1' ? (
@@ -111,9 +121,6 @@ const AddMyMovie: FC<Props> = ({ onHide }) => {
               onClick={() => {
                 loadDataLocalStorage();
                 setStep('step2');
-                setTimeout(() => {
-                  setDisabledButton(true);
-                }, 100);
               }}
             >
               SUBIR PELÍCULA
@@ -123,7 +130,8 @@ const AddMyMovie: FC<Props> = ({ onHide }) => {
               onClick={() => {
                 onHide();
               }}
-              className="btn-action"
+              className="btn-action message wow fadeIn"
+              data-wow-delay="4s"
             >
               IR A HOME
             </Button>

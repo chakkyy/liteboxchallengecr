@@ -7,18 +7,16 @@ import { LiteHero } from './styles';
 import { Movie } from '../../../interfaces';
 
 interface Props {
-  urlImage: string;
-  //featured film es un string por el find scream
-  featuredFilm: string;
+  featuredFilm?: Movie;
   popularFilms: Movie[];
 }
 
-const Hero: FC<Props> = ({ urlImage, featuredFilm, popularFilms }) => {
+const Hero: FC<Props> = ({ featuredFilm, popularFilms }) => {
   return (
     <LiteHero>
       <Image
         className="hero-featured-image"
-        src={'https://image.tmdb.org/t/p/original' + urlImage}
+        src={'https://image.tmdb.org/t/p/original' + featuredFilm?.backdrop_path}
         alt="hero-featured-image"
         layout="fill"
         loading="lazy"
@@ -33,7 +31,7 @@ const Hero: FC<Props> = ({ urlImage, featuredFilm, popularFilms }) => {
               <h6 className="wow fadeInDown">
                 ORIGINAL DE <strong>LITEFLIX</strong>
               </h6>
-              <h1 className="hero-content-title wow fadeInUp">{featuredFilm}</h1>
+              <h1 className="hero-content-title wow fadeInUp">{featuredFilm?.title}</h1>
 
               <div className="hero-container-buttons">
                 <Button className="btn-primary wow slideInUp">

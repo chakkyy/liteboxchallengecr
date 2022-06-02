@@ -151,17 +151,21 @@ export const LiteModal = styled(Modal).attrs(() => ({
 
     .modal-view-2 {
       height: 242px;
-      width: 85%;
+      width: 100%;
       margin: 0 auto;
       position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
 
+      .modal-view-2-container {
+        width: 75%;
+      }
       .loader {
         width: 100%;
         position: relative;
         animation: ${loaderHide} 4s ease-in-out forwards;
+        margin-top: 4em;
       }
 
       .loader-background {
@@ -191,10 +195,31 @@ export const LiteModal = styled(Modal).attrs(() => ({
       p {
         color: #fff;
         text-transform: uppercase;
-        text-align: center;
         font-size: 20px;
         line-height: 24px;
         letter-spacing: 4px;
+      }
+
+      .successful-loaded {
+        text-align: center;
+      }
+      .message {
+        margin-bottom: 8em;
+      }
+
+      .cancel-button-container {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+      }
+      .cancel-button {
+        background-color: transparent;
+        border: none;
+        color: #fff;
+        margin-top: 18px;
+        letter-spacing: 4px;
+        font-weight: 700;
       }
     }
   }

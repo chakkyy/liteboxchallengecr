@@ -23,8 +23,7 @@ const Step1: FC<Props> = ({
       {failed ? (
         <FailedUploadContainer>
           <p>
-            <strong>Error!</strong> Tipo de archivo no permitido, la imagen debe ser
-            formato jpg o png.
+            <strong>¡Error!</strong> No se pudo cargar la pelicula
           </p>
           <div className="error-fill" />
           <button className="retry-button" onClick={handleRetryUpload}>

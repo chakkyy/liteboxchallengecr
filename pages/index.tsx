@@ -6,14 +6,14 @@ import { getPopularFilms } from './api/getPopularFilms';
 import { GetServerSideProps } from 'next';
 
 interface HomeProps {
-  featuredApiFilm: Movie[];
+  featuredApiFilm?: Movie[];
   popularApiFilms: Movie[];
 }
 
 const Home = (props: HomeProps) => {
   const { featuredApiFilm, popularApiFilms } = props;
 
-  const featuredFilm = featuredApiFilm.find(film => film.title === 'Scream');
+  const featuredFilm = featuredApiFilm?.find(film => film.title === 'Scream');
   const popularFilms = popularApiFilms.slice(0, 4);
 
   return (
@@ -21,11 +21,7 @@ const Home = (props: HomeProps) => {
       description="Liteflix is a technical challenge for Litebox.ai"
       title="Liteflix | Home"
     >
-      <Hero
-        featuredFilm={featuredFilm!.title}
-        urlImage={featuredFilm!.backdrop_path}
-        popularFilms={popularFilms}
-      />
+      <Hero featuredFilm={featuredFilm} popularFilms={popularFilms} />
     </MainLayout>
   );
 };

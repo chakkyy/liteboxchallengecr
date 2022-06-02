@@ -1,48 +1,36 @@
-import { useState, useEffect } from 'react';
 import { Movie } from '../../interfaces';
 import MovieCard from '../commons/MovieCard/MovieCard';
 import { EmptyMovies } from './styles';
 
 const MyMovies = () => {
-  const [dataLocalStorage, setDataLocalStorage] = useState<Array<Movie>>([]);
-  const [showData, setShowData] = useState(false);
+  const getData = localStorage.getItem('dataMovie');
+  const dataParsed = JSON.parse(getData as string);
 
-  useEffect(() => {
-    if (localStorage.getItem('dataMovie') !== null) {
-      const getData = localStorage.getItem('dataMovie');
-      const dataMovieLocalStorage = JSON.parse(getData as string);
-      setDataLocalStorage(dataMovieLocalStorage);
-    }
-    setShowData(true);
-  }, [showData]);
-
-  const dataDone = () => {
-    if (showData) {
-      return (
-        <>
-          {dataLocalStorage.length > 0 ? (
-            dataLocalStorage
-              .slice(0, 4)
-              .map((movie, index) => (
-                <MovieCard
-                  key={index}
-                  title={movie.title}
-                  image={movie.image}
-                  addedDate={movie.addedDate}
-                />
-              ))
-          ) : (
-            <EmptyMovies>
-              <h5>Ups! No encontramos nada</h5>
-              <p>Agregue una película para poder visualizarla aquí.</p>
-            </EmptyMovies>
-          )}
-        </>
-      );
-    }
+  const showMovies = () => {
+    return dataParsed
+      .slice(0, 4)
+      .map((movie: Movie, index: number) => (
+        <MovieCard
+          key={index}
+          title={movie.title}
+          image={movie.image}
+          addedDate={movie.addedDate}
+        />
+      ));
   };
 
-  return <>{dataDone()}</>;
+  return (
+    <>
+      {dataParsed?.length > 0 ? (
+        showMovies()
+      ) : (
+        <EmptyMovies>
+          <h5>Ups! No encontramos nada</h5>
+          <p>Agregue una película para poder visualizarla aquí.</p>
+        </EmptyMovies>
+      )}
+    </>
+  );
 };
 
 export default MyMovies;
